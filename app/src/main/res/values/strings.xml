@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Instagram Clone</string>
+    <string name="EmailHint">Email</string>
+    <string name="EmailDescr">Digite o email</string>
+    <string name="SenhaHint">Senha</string>
+    <string name="SenhaDescr">Digite a senha</string>
+    <string name="CadastrarOpcao">Cadastre-se</string>
+    <string name="BotaoEntrar">Entrar</string>
+    <string name="BotaoEntrarDescr">Botão entrar</string>
+    <string name="NomeHintCadastro">Nome</string>
+    <string name="BotaoCadastrar">Cadastrar</string>
+</resources>
