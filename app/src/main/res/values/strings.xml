@@ -9,4 +9,6 @@
     <string name="BotaoEntrarDescr">Botão entrar</string>
     <string name="NomeHintCadastro">Nome</string>
     <string name="BotaoCadastrar">Cadastrar</string>
+    <string name="BotaoCadastrarDescr">Botão Cadastrar</string>
+    <string name="NomeDescr">Digitre o nome do usuário</string>
 </resources>

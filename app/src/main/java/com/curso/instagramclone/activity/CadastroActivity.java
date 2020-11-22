@@ -32,9 +32,9 @@ public class CadastroActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro);
+    protected void onCreate( Bundle savedInstanceState ) {
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_cadastro );
 
         inicializarComponentes();
 
@@ -58,17 +58,17 @@ public class CadastroActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText( CadastroActivity.this,
                                     "Preencha a senha!",
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_SHORT ).show();
                         }
                     } else {
                         Toast.makeText( CadastroActivity.this,
                                 "Preencha o email!",
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_SHORT ).show();
                     }
                 } else {
                     Toast.makeText( CadastroActivity.this,
                             "Preencha o nome!",
-                            Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_SHORT ).show();
                 }
             }
         });
@@ -80,6 +80,7 @@ public class CadastroActivity extends AppCompatActivity {
         campoSenha = findViewById( R.id.editCadastroSenha );
         botaoCadastrar = findViewById( R.id.buttonCadastrar );
         progressBar = findViewById( R.id.progressCadastro );
+        campoNome.requestFocus();
     }
 
     public void cadastrar( Usuario usuario ) {
@@ -92,13 +93,13 @@ public class CadastroActivity extends AppCompatActivity {
                 this,
                 new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete( @NonNull Task<AuthResult> task ) {
                         if( task.isSuccessful() ) {
                             progressBar.setVisibility( View.GONE );
                             Toast.makeText(CadastroActivity.this,
                                     "Cadastro realizado com sucesso!",
-                                    Toast.LENGTH_SHORT).show();
-                            startActivity( new Intent(getApplicationContext(),MainActivity.class) );
+                                    Toast.LENGTH_SHORT ).show();
+                            startActivity( new Intent( getApplicationContext(), MainActivity.class ) );
                             finish();
                         } else {
                             progressBar.setVisibility( View.GONE );
@@ -113,12 +114,12 @@ public class CadastroActivity extends AppCompatActivity {
                             } catch( FirebaseAuthUserCollisionException e ) {
                                 excecao = "Esta conta já existe!";
                             } catch( Exception e ) {
-                                excecao = "Erro ao cadastrar usuário: " + e.getMessage();
+                                excecao = "Erro ao logar usuário: " + e.getMessage();
                                 e.printStackTrace(); // printa no Logcat
                             }
                             Toast.makeText(CadastroActivity.this,
                                     excecao,
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_SHORT ).show();
                         }
                     }
                 }
