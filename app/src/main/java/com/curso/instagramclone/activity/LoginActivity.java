@@ -32,8 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_login );
 
-        //autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
-        //autenticacao.signOut();
         verificarUsuarioLogado();
         inicializarComponentes();
 
