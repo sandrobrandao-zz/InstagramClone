@@ -1,5 +1,12 @@
 package com.curso.instagramclone.model;
 
+import com.curso.instagramclone.helper.ConfiguracaoFirebase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Usuario {
     private String id;
     private String nome;
@@ -11,11 +18,36 @@ public class Usuario {
 
     }
 
+    public void salvar() {
+        DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebaseDatabase();
+        DatabaseReference usuariosRef = firebaseRef.child( "usuarios" ).child( getId() );
+        usuariosRef.setValue( this );
+    }
+
+    public void atualizar() {
+        DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebaseDatabase();
+        DatabaseReference usuarioRef = firebaseRef.child( "usuarios" ).child( getId() );
+        Map<String, Object> valoresUsuario = converterParaMap();
+
+        usuarioRef.updateChildren( valoresUsuario );
+    }
+
+    public Map<String, Object> converterParaMap() {
+        HashMap<String, Object> usuarioMap = new HashMap<>();
+
+        usuarioMap.put( "email", getEmail() );
+        usuarioMap.put( "nome", getNome() );
+        usuarioMap.put( "id", getId() );
+        usuarioMap.put( "caminhoFoto", getCaminhoFoto() );
+
+        return usuarioMap;
+    }
+
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId( String id ) {
         this.id = id;
     }
 
@@ -23,7 +55,7 @@ public class Usuario {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome( String nome ) {
         this.nome = nome;
     }
 
@@ -31,15 +63,16 @@ public class Usuario {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail( String email ) {
         this.email = email;
     }
 
+    @Exclude
     public String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) {
+    public void setSenha( String senha ) {
         this.senha = senha;
     }
 
@@ -47,7 +80,7 @@ public class Usuario {
         return caminhoFoto;
     }
 
-    public void setCaminhoFoto(String caminhoFoto) {
+    public void setCaminhoFoto( String caminhoFoto ) {
         this.caminhoFoto = caminhoFoto;
     }
 }

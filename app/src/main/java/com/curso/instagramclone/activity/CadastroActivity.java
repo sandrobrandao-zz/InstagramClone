@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.curso.instagramclone.R;
 import com.curso.instagramclone.helper.ConfiguracaoFirebase;
+import com.curso.instagramclone.helper.UsuarioFirebase;
 import com.curso.instagramclone.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -83,7 +84,7 @@ public class CadastroActivity extends AppCompatActivity {
         campoNome.requestFocus();
     }
 
-    public void cadastrar( Usuario usuario ) {
+    public void cadastrar(final Usuario usuario ) {
         progressBar.setVisibility( View.VISIBLE );
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
         autenticacao.createUserWithEmailAndPassword(
@@ -95,12 +96,25 @@ public class CadastroActivity extends AppCompatActivity {
                     @Override
                     public void onComplete( @NonNull Task<AuthResult> task ) {
                         if( task.isSuccessful() ) {
-                            progressBar.setVisibility( View.GONE );
-                            Toast.makeText(CadastroActivity.this,
-                                    "Cadastro realizado com sucesso!",
-                                    Toast.LENGTH_SHORT ).show();
-                            startActivity( new Intent( getApplicationContext(), MainActivity.class ) );
-                            finish();
+                            try {
+                                progressBar.setVisibility( View.GONE );
+
+                                // salva dados no firebase
+                                String idUsuario = task.getResult().getUser().getUid();
+                                usuario.setId( idUsuario );
+                                usuario.salvar();
+
+                                // salvar dados no profile do firebase
+                                UsuarioFirebase.atualizarNomeUsuario( usuario.getNome() );
+
+                                Toast.makeText(CadastroActivity.this,
+                                        "Cadastro realizado com sucesso!",
+                                        Toast.LENGTH_SHORT ).show();
+                                startActivity( new Intent( getApplicationContext(), MainActivity.class ) );
+                                finish();
+                            } catch( Exception e ) {
+                                e.printStackTrace();
+                            }
                         } else {
                             progressBar.setVisibility( View.GONE );
 
