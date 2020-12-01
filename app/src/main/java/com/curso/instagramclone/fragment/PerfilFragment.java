@@ -24,7 +24,7 @@ public class PerfilFragment extends Fragment {
     private TextView textPublicacoes;
     private TextView textSeguidores;
     private TextView textSeguindo;
-    private Button buttonEditarPerfil;
+    private Button buttonAcaoPerfil;
     private GridView gridViewPerfil;
 
     public PerfilFragment() {
@@ -39,15 +39,15 @@ public class PerfilFragment extends Fragment {
 
         // configuracoes dos componentes
         progressBar = view.findViewById( R.id.progressBarPerfil );
-        imagePerfil = view.findViewById( R.id.imageEditarPerfil);
+        imagePerfil = view.findViewById( R.id.imagePerfil);
         textPublicacoes = view.findViewById( R.id.textPublicacoes );
         textSeguidores = view.findViewById( R.id.textSeguidores );
         textSeguindo = view.findViewById( R.id.textSeguindo );
-        buttonEditarPerfil = view.findViewById( R.id.buttonEditarPerfil );
+        buttonAcaoPerfil = view.findViewById( R.id.buttonAcaoPerfil);
         gridViewPerfil = view.findViewById( R.id.gridViewPerfil );
 
         // abre a edicao do perfil
-        buttonEditarPerfil.setOnClickListener( new View.OnClickListener() {
+        buttonAcaoPerfil.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick( View v ) {
                 Intent i = new Intent( getActivity(), EditarPerfilActivity.class );

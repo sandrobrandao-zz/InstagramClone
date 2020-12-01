@@ -32,7 +32,7 @@ import java.io.ByteArrayOutputStream;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditarPerfilActivity extends AppCompatActivity {
-    private CircleImageView imageEditarPerfil;
+    private CircleImageView imagePerfil;
     private TextView textAlterarFoto;
     private TextInputEditText editNomePerfil;
     private TextInputEditText editEmailPerfil;
@@ -64,15 +64,15 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
         // recupera dados do usuario
         FirebaseUser usuarioPerfil = UsuarioFirebase.getUsuarioAtual();
-        editNomePerfil.setText( usuarioPerfil.getDisplayName() );
+        editNomePerfil.setText( usuarioPerfil.getDisplayName().toUpperCase() );
         editEmailPerfil.setText( usuarioPerfil.getEmail() );
         Uri url = usuarioPerfil.getPhotoUrl();
         if( url != null ) {
             Glide.with(EditarPerfilActivity.this )
                     .load( url )
-                    .into( imageEditarPerfil );
+                    .into( imagePerfil );
         } else {
-            imageEditarPerfil.setImageResource( R.drawable.avatar );
+            imagePerfil.setImageResource( R.drawable.avatar );
         }
 
         // atualizar nome do usuario
@@ -123,7 +123,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
                 //Caso tenha sido escolhido uma imagem
                 if ( imagem != null ){
                     //Configura imagem na tela
-                    imageEditarPerfil.setImageBitmap( imagem );
+                    imagePerfil.setImageBitmap( imagem );
 
                     //Recuperar dados da imagem para o firebase
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -175,7 +175,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
     }
     public void inicializarComponentes() {
-        imageEditarPerfil = findViewById( R.id.imageEditarPerfil );
+        imagePerfil = findViewById( R.id.imagePerfil);
         textAlterarFoto = findViewById( R.id.textAlterarFoto);
         editNomePerfil = findViewById( R.id.editNomePerfil );
         editEmailPerfil = findViewById( R.id.editEmailPerfil );
