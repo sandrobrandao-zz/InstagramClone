@@ -14,4 +14,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nomeUser">Nome do usuário</string>
+    <string name="BotaoAbrirGaleria">Abrir Galeria</string>
+    <string name="BotaoAbrirCamera">Abrir Camera</string>
+    <string name="FiltroDescricao">Descrição</string>
+    <string name="NomeFiltro">Filtro</string>
 </resources>

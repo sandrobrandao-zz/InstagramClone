@@ -44,6 +44,9 @@ dependencies {
 
     // Imagem arredondada (Circle Image View)
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // Uso de filtros para imagens ou fotos
+    implementation 'info.androidhive:imagefilters:1.0.7'
 }
 
 apply plugin: 'com.google.gms.google-services'
